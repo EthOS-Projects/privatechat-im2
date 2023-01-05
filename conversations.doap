@@ -11,14 +11,13 @@
 
     <shortdesc xml:lang="en">Android XMPP Client</shortdesc>
 
-    <description xml:lang="en">Conversations is an open source XMPP/Jabber client for the Android platform</description>
+    <description xml:lang="en">privatechat.im is an secure private encrypted chat client for the Ethos Privacy network.</description>
 
-    <homepage rdf:resource="https://conversations.im/"/>
-    <download-page rdf:resource="https://play.google.com/store/apps/details?id=eu.siacs.conversations"/>
-    <bug-database rdf:resource="https://github.com/iNPUTmice/Conversations/issues"/>
-    <!-- See https://github.com/ewilderj/doap/issues/53 -->
-    <developer-forum rdf:resource="xmpp:conversations@siacs.conference.eu?join"/>
-    <support-forum rdf:resource="xmpp:conversations@siacs.conference.eu?join"/>
+    <homepage rdf:resource="https://privatechat.im/"/>
+    <download-page rdf:resource="https://privatechat.im/"/>
+    <bug-database rdf:resource="https://privatechat.im/"/>
+   
+
 
     <license rdf:resource="https://github.com/iNPUTmice/Conversations/blob/master/LICENSE"/>
 

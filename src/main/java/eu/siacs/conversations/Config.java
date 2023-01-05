@@ -18,7 +18,42 @@ public final class Config {
     private static final int OMEMO = 8;
 
     private static final int ENCRYPTION_MASK = UNENCRYPTED | OPENPGP | OMEMO;
+    
 
+    final int setEncryptionNO = 0;
+    final int setEncryptionOMEMO = 8;
+
+       public static boolean supportUnencrypted() {
+        return (setEncryptionNO);
+    }
+
+    public static boolean supportOpenPgp() {
+        return (setEncryptionNO);
+    }
+
+    public static boolean supportOmemo() {
+        return (setEncryptionOMEMO);
+    }
+
+    public static boolean omemoOnly() {
+        return setEncryptionOMEMO;
+    }
+
+    public static boolean multipleEncryptionChoices() {
+        return (setEncryptionNO);
+    }
+    //test this if works to force only omemo connections
+
+
+
+
+
+
+
+
+
+
+ //original encryption settings
     public static boolean supportUnencrypted() {
         return (ENCRYPTION_MASK & UNENCRYPTED) != 0;
     }
@@ -38,20 +73,22 @@ public final class Config {
     public static boolean multipleEncryptionChoices() {
         return (ENCRYPTION_MASK & (ENCRYPTION_MASK - 1)) != 0;
     }
+//end original
+
 
     public static final String LOGTAG = BuildConfig.APP_NAME.toLowerCase(Locale.US);
 
-    public static final Jid BUG_REPORTS = Jid.of("bugs@conversations.im");
-    public static final Uri HELP = Uri.parse("https://help.conversations.im");
+    public static final Jid BUG_REPORTS = Jid.of("support@privatechat.im");
+    public static final Uri HELP = Uri.parse("https://privatechat.im");
 
 
-    public static final String DOMAIN_LOCK = null; //only allow account creation for this domain
-    public static final String MAGIC_CREATE_DOMAIN = "conversations.im";
-    public static final Jid QUICKSY_DOMAIN = Jid.of("quicksy.im");
+    public static final String DOMAIN_LOCK = true; //only allow account creation for this domain
+    public static final String MAGIC_CREATE_DOMAIN = "privatechat.im";
+    public static final Jid QUICKSY_DOMAIN = Jid.of("privatechat.im");
 
-    public static final String CHANNEL_DISCOVERY = "https://search.jabber.network";
+    public static final String CHANNEL_DISCOVERY = "https://search.privatechat.network";
 
-    public static final boolean DISALLOW_REGISTRATION_IN_UI = false; //hide the register checkbox
+    public static final boolean DISALLOW_REGISTRATION_IN_UI = true; //hide the register checkbox
 
     public static final boolean USE_RANDOM_RESOURCE_ON_EVERY_BIND = false;
 
@@ -60,18 +97,18 @@ public final class Config {
     public static final long CONTACT_SYNC_RETRY_INTERVAL = 1000L * 60 * 5;
 
 
-    public static final boolean QUICKSTART_ENABLED = true;
+    public static final boolean QUICKSTART_ENABLED = false;
 
     //Notification settings
-    public static final boolean HIDE_MESSAGE_TEXT_IN_NOTIFICATION = false;
+    public static final boolean HIDE_MESSAGE_TEXT_IN_NOTIFICATION = true;
     public static final boolean ALWAYS_NOTIFY_BY_DEFAULT = false;
-    public static final boolean SUPPRESS_ERROR_NOTIFICATION = false;
+    public static final boolean SUPPRESS_ERROR_NOTIFICATION = true;
 
 
-    public static final boolean DISABLE_BAN = false; // disables the ability to ban users from rooms
+    public static final boolean DISABLE_BAN = true; // disables the ability to ban users from rooms
 
     public static final int PING_MAX_INTERVAL = 300;
-    public static final int IDLE_PING_INTERVAL = 600; //540 is minimum according to docs;
+    public static final int IDLE_PING_INTERVAL = 300; //540 is minimum according to docs;
     public static final int PING_MIN_INTERVAL = 30;
     public static final int LOW_PING_TIMEOUT = 1; // used after push received
     public static final int PING_TIMEOUT = 15;
@@ -100,12 +137,12 @@ public final class Config {
     public static final int REFRESH_UI_INTERVAL = 500;
 
     public static final int MAX_DISPLAY_MESSAGE_CHARS = 4096;
-    public static final int MAX_STORAGE_MESSAGE_CHARS = 2 * 1024 * 1024; //2MB
+    public static final int MAX_STORAGE_MESSAGE_CHARS = 0 * 64 * 64; //2MB
 
     public static final long MILLISECONDS_IN_DAY = 24 * 60 * 60 * 1000;
 
     //remove *other* omemo devices from *your* device list announcement after not seeing any activity from them for 42 days. They will automatically add themselves after coming back online.
-    public static final long OMEMO_AUTO_EXPIRY = 42 * MILLISECONDS_IN_DAY;
+    public static final long OMEMO_AUTO_EXPIRY = 14 * MILLISECONDS_IN_DAY;
 
     public static final boolean REMOVE_BROKEN_DEVICES = false;
     public static final boolean OMEMO_PADDING = false;
@@ -116,24 +153,24 @@ public final class Config {
 
     public static final boolean DISABLE_PROXY_LOOKUP = false; //useful to debug ibb
     public static final boolean USE_DIRECT_JINGLE_CANDIDATES = true;
-    public static final boolean DISABLE_HTTP_UPLOAD = false;
+    public static final boolean DISABLE_HTTP_UPLOAD = true;
     public static final boolean EXTENDED_SM_LOGGING = false; // log stanza counts
     public static final boolean BACKGROUND_STANZA_LOGGING = false; //log all stanzas that were received while the app is in background
     public static final boolean RESET_ATTEMPT_COUNT_ON_NETWORK_CHANGE = true; //setting to true might increase power consumption
 
-    public static final boolean ENCRYPT_ON_HTTP_UPLOADED = false;
+    public static final boolean ENCRYPT_ON_HTTP_UPLOADED = true;
 
-    public static final boolean X509_VERIFICATION = false; //use x509 certificates to verify OMEMO keys
-    public static final boolean REQUIRE_RTP_VERIFICATION = false; //require a/v calls to be verified with OMEMO
+    public static final boolean X509_VERIFICATION = true; //use x509 certificates to verify OMEMO keys
+    public static final boolean REQUIRE_RTP_VERIFICATION = true; //require a/v calls to be verified with OMEMO
 
-    public static final boolean ONLY_INTERNAL_STORAGE = false; //use internal storage instead of sdcard to save attachments
+    public static final boolean ONLY_INTERNAL_STORAGE = true; //use internal storage instead of sdcard to save attachments
 
     public static final boolean IGNORE_ID_REWRITE_IN_MUC = true;
     public static final boolean MUC_LEAVE_BEFORE_JOIN = false;
 
     public static final boolean USE_LMC_VERSION_1_1 = true;
 
-    public static final long MAM_MAX_CATCHUP = MILLISECONDS_IN_DAY * 5;
+    public static final long MAM_MAX_CATCHUP = MILLISECONDS_IN_DAY * 1;
     public static final int MAM_MAX_MESSAGES = 750;
 
     public static final ChatState DEFAULT_CHAT_STATE = ChatState.ACTIVE;
@@ -208,7 +245,7 @@ public final class Config {
     }
 
     // How deep nested quotes should be displayed. '2' means one quote nested in another.
-    public static final int QUOTE_MAX_DEPTH = 7;
+    public static final int QUOTE_MAX_DEPTH = 2;
     // How deep nested quotes should be created on quoting a message.
     public static final int QUOTING_MAX_DEPTH = 2;
 }
